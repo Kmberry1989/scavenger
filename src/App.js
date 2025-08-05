@@ -320,4 +320,14 @@ export default function App() {
     const renderContent = () => {
         const gameState = playerData ? playerData.gameState : 'welcome';
         switch (gameState) {
+            case 'welcome':
+                return <WelcomeScreen onStartGame={() => handleGameStateChange('playing')} />;
+            case 'playing':
+                return <GameScreen playerName={playerData.name} />; // Assuming GameScreen needs player name
+            case 'finished':
+                return <FinishedScreen />; // Assuming FinishedScreen needs no props
+            default:
+                return <WelcomeScreen onStartGame={() => handleGameStateChange('playing')} />; // Default to welcome screen
         }
+    };
+}
